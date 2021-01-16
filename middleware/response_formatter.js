@@ -8,13 +8,13 @@ const responseFormatter = (apiPrefix)=> async (ctx,next)=>{
         try{
             // 等待路由执行
             await next()
-
-            if(ctx.reponse.status === 404){
+            console.log(ctx.response.status,"你没有status");
+            if(ctx.response.status === 404){
                 throw new ApiError(ApiErrorNames.NOT_FOUND)
             }else{
                 ctx.body = {
-                    code = 'success',
-                    message='成功',
+                    code :'success',
+                    message:'成功',
                     result:ctx.body
                 }
             }
@@ -24,8 +24,8 @@ const responseFormatter = (apiPrefix)=> async (ctx,next)=>{
             //error 实例是否在ApiError的原型链上 \ 或者error实例是否在ApiError的构造函数中
             if(error instanceof ApiError){
                 ctx.body = {
-                    code = error.code,
-                    message=error.message,
+                    code : error.code,
+                    message : error.message,
                 }
             }else{
                 ctx.status = 400;
