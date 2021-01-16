@@ -10,6 +10,7 @@ const logger = require('koa-logger')
 const responseFormatter = require('./middleware/response_formatter')    //初始化返回数据格式
 const { apiPrefix } = require('./config/index')    //解构路由url 规范设置
 const routers = require('./routers/index')  //模块化的路由
+require('./dbhelper/db')    //直接引入执行
 onerror(app)    //过滤非法入侵
 
 // 挂载中间件
